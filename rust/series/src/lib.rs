@@ -1,13 +1,12 @@
 pub fn series(digits: &str, len: usize) -> Vec<String> {
-    let mut res = vec![];
-
-    if len > digits.len() {
-        return res;
+    if len <= 0 {
+        return vec![String::new(); digits.len() + 1];
     }
 
-    for i in 0..=(digits.len() - len) {
-        res.push(String::from(&digits[i..i+len]));
-    }
-
-    return res;
+    digits
+        .chars()
+        .collect::<Vec<_>>()
+        .windows(len)
+        .map(|xs| xs.iter().collect::<String>())
+        .collect()
 }
