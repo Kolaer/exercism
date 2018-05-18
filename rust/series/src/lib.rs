@@ -1,3 +1,13 @@
 pub fn series(digits: &str, len: usize) -> Vec<String> {
-    unimplemented!("What are the series of length {} in string {:?}", len, digits)
+    let mut res = vec![];
+
+    if len > digits.len() {
+        return res;
+    }
+
+    for i in 0..=(digits.len() - len) {
+        res.push(String::from(&digits[i..i+len]));
+    }
+
+    return res;
 }
