@@ -1,14 +1,15 @@
-name: grade-school
-version: 0.1.0.2
+name: etl
+version: 1.0.0.3
 
 dependencies:
   - base
+  - containers
 
 library:
-  exposed-modules: School
+  exposed-modules: ETL
   source-dirs: src
-  dependencies:
-      - containers       # List here the packages you
+  # dependencies:
+  # - foo       # List here the packages you
   # - bar       # want to use in your solution.
 
 tests:
@@ -16,5 +17,5 @@ tests:
     main: Tests.hs
     source-dirs: test
     dependencies:
-      - grade-school
+      - etl
       - hspec

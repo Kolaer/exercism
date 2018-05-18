@@ -1,15 +1,23 @@
 module School (School, add, empty, grade, sorted) where
 
-data School = Dummy
+import qualified Data.Map.Lazy as Map
+import Data.List (sort)
+
+data School = School (Map.Map Int [String])
 
 add :: Int -> String -> School -> School
-add gradeNum student school = error "You need to implement this function."
+add gradeNum student (School school) = School $ Map.insert gradeNum (student : prevValue) school
+                                       where prevValue = case (Map.lookup gradeNum school) of
+                                                           Nothing -> []
+                                                           Just x  -> x
 
 empty :: School
-empty = error "You need to implement this function."
+empty = School Map.empty
 
 grade :: Int -> School -> [String]
-grade gradeNum school = error "You need to implement this function."
+grade gradeNum (School school) = case (Map.lookup gradeNum school) of
+                                   Nothing -> []
+                                   Just x  -> sort $ x
 
 sorted :: School -> [(Int, [String])]
-sorted school = error "You need to implement this function."
+sorted (School school) = fmap (\(gr, studs) -> (gr, sort studs)) $ Map.assocs school
